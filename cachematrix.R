@@ -1,10 +1,13 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+
+## these are variables which store the current inverted matrix and most recent metrix sent for inversion
 currentinverse<<-matrix()
 currentmatrix<<-matrix()
 
+
+## this function takes a matrix x and stores the result in cacheSolve
 makeCacheMatrix <- function(x = matrix()) {
     currentinverse<<-cacheSolve(x)
     currentmatrix<<-x
@@ -22,16 +25,13 @@ cacheSolve <- function(x, ...) {
         #currentmatrix is the one which was in use
         #x is the potentially new matrix
     
-        result<-all.equal(x,currentmatrix)
-        print(x)
-        print(currentmatrix)
-        print(result)
+        result<-identical(x,currentmatrix)
         if (result==TRUE) {
-        print("no change - so nothing to invert")
+        print("no change to the source matrix- so nothing to invert -current matrix unchanged ")
         currentinverse
         } else
         {
-        print("solving and inverting")
+        print("matrix changed - solving and inverting  - new inverted matrix")
         i<-solve(x)    
         i
         }
